@@ -19,7 +19,8 @@ class PPGVisualizer:
             "Histogram": self._plot_histogram,
             "2D Histogram": self._plot_2d_histogram,
             "Boxplot": self._plot_boxplot,
-            "Scatter": self._plot_scatter
+            "Scatter": self._plot_scatter,
+            "Scatter mit Linie": self._plot_scatter_with_line
         }
         self.OPERATORS = [">", "<", ">=", "<=", "==", "!="]
         self.DEFAULT_FIGSIZE = (12, 6)
@@ -356,6 +357,22 @@ class PPGVisualizer:
         plt.xlabel(x_col)
         plt.ylabel(y_col)
         plt.title(f'Scatterplot von {x_col} vs. {y_col}')
+        plt.grid(True)
+        plt.show()
+       
+    def _plot_scatter_with_line(self):
+        """Erstellt einen Scatterplot mit Linienverbindung."""
+        x_col = self.x_dropdown.get()
+        y_col = self.y_dropdown.get()
+        x_values = self.filtered_data[x_col]
+        y_values = self.filtered_data[y_col]
+        plt.figure(figsize=self.DEFAULT_FIGSIZE)
+        plt.scatter(x_values, y_values, alpha=0.7, label='Datenpunkte')
+        plt.plot(x_values, y_values, linestyle='-', color='blue', label='Verbindungslinie')
+        plt.xlabel(x_col)
+        plt.ylabel(y_col)
+        plt.title(f'Scatterplot von {x_col} vs. {y_col} mit Verbindungslinie')
+        plt.legend()
         plt.grid(True)
         plt.show()
         
