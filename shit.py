@@ -88,11 +88,9 @@ class PPGVisualizer:
             command=self.add_filter_condition
         ).pack(side=tk.LEFT, padx=5)
 
-        # Bedingungen Liste
         self.conditions_listbox = tk.Listbox(filter_frame, height=5)
         self.conditions_listbox.pack(fill=tk.X, padx=5, pady=5)
 
-        # Bedingungen entfernen und Filter anwenden
         condition_btn_frame = ttk.Frame(filter_frame)
         condition_btn_frame.pack(fill=tk.X, padx=5, pady=2)
         ttk.Button(
@@ -133,9 +131,8 @@ class PPGVisualizer:
             type_frame, state="readonly", values=list(self.PLOT_TYPES.keys())
         )
         self.plot_type_dropdown.pack(side=tk.LEFT, padx=5)
-        self.plot_type_dropdown.set("Scatter mit Linie")
+        self.plot_type_dropdown.set("Histogram")
 
-        # Checkbox für `pl`-Mapping
         self.map_pl_to_time_var = tk.BooleanVar()
         ttk.Checkbutton(
             plot_frame,
@@ -314,7 +311,6 @@ class PPGVisualizer:
         if messagebox.askokcancel("Beenden", "Möchten Sie die Anwendung schließen?"):
             self.root.destroy()
 
-# Hauptprogramm
 if __name__ == "__main__":
     root = tk.Tk()
     app = PPGVisualizer(root)
